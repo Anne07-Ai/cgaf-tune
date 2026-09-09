@@ -1,0 +1,30 @@
+experiment:
+  name: qwen3-0.6b-cgaf-pilot
+  seed: 42
+model:
+  name: Qwen/Qwen3-0.6B
+  load_in_4bit: true
+  torch_dtype: bfloat16
+lora:
+  rank: 16
+  alpha: 32
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+training:
+  method: cgaf
+  learning_rate: 0.0002
+  epochs: 3
+  per_device_batch_size: 2
+  gradient_accumulation_steps: 8
+  max_length: 1024
+  anchor_ratio: 0.125
+  projection_frequency: 1
+cgaf:
+  grouping: layer
+  temperature: 0.1
+  minimum_conflict: 0.0
+  epsilon: 1.0e-12
+evaluation:
+  seeds: [42, 123, 456]
+  report_memory: true
+  report_wall_time: true
