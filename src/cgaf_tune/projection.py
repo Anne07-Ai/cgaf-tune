@@ -2,8 +2,8 @@
 
 from __future__ import annotations
 
+from collections.abc import Mapping
 from dataclasses import dataclass
-from typing import Mapping
 
 import torch
 from torch import Tensor
@@ -41,7 +41,7 @@ def _flatten(tensors: list[Tensor]) -> Tensor:
 def apply_cgaf_projection(
     domain_gradients: Mapping[str, list[Tensor]],
     anchor_gradients: Mapping[str, list[Tensor]],
-    config: CGAFConfig = CGAFConfig(),
+    config: CGAFConfig | None = None,
 ) -> tuple[dict[str, list[Tensor]], dict[str, ProjectionStats]]:
     """Project conflicting domain gradients group-by-group.
 
@@ -49,6 +49,7 @@ def apply_cgaf_projection(
     Returned tensors do not mutate the inputs.
     """
 
+    config = config or CGAFConfig()
     if domain_gradients.keys() != anchor_gradients.keys():
         raise ValueError("domain and anchor groups must match")
 
