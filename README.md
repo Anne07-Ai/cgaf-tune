@@ -73,6 +73,7 @@ A real run requires CUDA plus access to the configured Hugging Face model and da
 - `configs/` — reproducible single-GPU configurations
 - `tests/` — numerical unit tests
 - `docs/research-proposal.md` — hypothesis, related work, and experimental design
+- `docs/architecture.md` — system, training sequence, and experiment diagrams
 - `docs/evaluation.md` — metrics, baselines, ablations, and reporting rules
 
 ## Planned baselines and ablations
