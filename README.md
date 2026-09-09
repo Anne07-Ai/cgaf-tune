@@ -14,11 +14,13 @@ Can layer-local gradient-conflict gates preserve general instruction following a
 
 Each step computes adapter gradients from a domain batch and a small capability-retention anchor batch. For adapter group (l), CGAF measures cosine conflict and smoothly removes only the harmful component:
 
-[
-g'_l = g^D_l - gamma_l rac{min(0,langle g^D_l,g^A_langle)}
-{lVert g^A_lVert^2+epsilon}g^A_l,qquad
-gamma_l=sigma(-c_l/T)
-]
+$$
+g'_l = g^D_l - \gamma_l
+\frac{\min(0,\langle g^D_l,g^A_l\rangle)}
+{\lVert g^A_l\rVert^2+\epsilon}g^A_l,
+\qquad
+\gamma_l=\sigma(-c_l/T)
+$$
 
 Positive alignment is untouched. The hypothesis is that **soft, local intervention** yields a better adaptation–retention trade-off than globally mixing rehearsal loss or always projecting gradients.
 
