@@ -1,0 +1,33 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cgaf-tune"
+version = "0.1.0"
+description = "Conflict-gated adaptive fine-tuning for capability-preserving LLM adaptation"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "Apache-2.0"}
+dependencies = [
+  "torch>=2.2",
+  "transformers>=4.51",
+  "peft>=0.15",
+  "datasets>=3.0",
+  "accelerate>=1.2",
+  "bitsandbytes>=0.45; platform_system == 'Linux'",
+  "pyyaml>=6.0",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "ruff>=0.9"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
