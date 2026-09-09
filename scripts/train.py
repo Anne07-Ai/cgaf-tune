@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 """Validated entry point; full Trainer integration is tracked in the roadmap."""
 
 from __future__ import annotations
