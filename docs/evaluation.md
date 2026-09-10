@@ -55,10 +55,15 @@ Dataset selection remains configuration-driven so the method is not tailored to 
 
 Run at least three fixed seeds. Report mean, standard deviation, paired differences against LoRA, and bootstrap 95% confidence intervals over evaluation examples. Publish failures and all predeclared primary outcomes. Do not call an outcome state of the art without a broad, current baseline study.
 
-The implemented analysis currently bootstraps independent run-level values and pairs methods by
-seed. This quantifies seed variability. Example-level bootstrap intervals require the Phase 5
-evaluation harness to retain per-example predictions; run-level intervals must not be described
-as example-level uncertainty.
+Two uncertainty levels are implemented and must remain distinct:
+
+- `scripts/evaluate.py` bootstraps independent run-level values and pairs methods by seed; this
+  quantifies seed variability.
+- `scripts/evaluate_model.py` retains every prediction and bootstraps example scores; this
+  quantifies evaluation-sample uncertainty for one checkpoint.
+
+Neither interval alone captures both sources. Final reporting should show variation across seeds
+and example-level intervals, and should identify which resampling unit produced each interval.
 
 ## Stop/go threshold for the pilot
 

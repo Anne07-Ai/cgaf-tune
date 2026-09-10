@@ -170,6 +170,41 @@ Phase 4 analysis adds deterministic percentile-bootstrap confidence intervals, s
 differences against LoRA, automatic Pareto-front membership, and a dependency-free SVG scatter
 chart with forgetting on the x-axis and domain gain on the y-axis.
 
+## Per-example evaluation and leakage audit
+
+Evaluation JSONL rows require `id`, `prompt`, `reference`, and `category`. Run the frozen base model
+and each trained adapter separately so every prediction remains auditable:
+
+```bash
+python scripts/evaluate_model.py \
+  --config configs/qwen3_0.6b.yaml \
+  --data data/evaluation.jsonl \
+  --output outputs/cgaf-seed42-evaluation.json \
+  --adapter outputs/pilot/cgaf-seed42/adapter
+```
+
+The output includes every prediction, normalized exact match, token F1, category aggregates, and
+example-level bootstrap 95% confidence intervals.
+
+Audit overlap before running final experiments:
+
+```bash
+python scripts/audit_leakage.py \
+  --training-data data/domain.jsonl \
+  --evaluation-data data/evaluation.jsonl \
+  --output outputs/leakage-audit.json \
+  --threshold 0.85 --fail-on-leakage
+```
+
+Generate a publication-ready Markdown table from evaluation outputs:
+
+```bash
+python scripts/build_results_table.py \
+  --result Base=outputs/base-evaluation.json \
+  --result CGAF=outputs/cgaf-evaluation.json \
+  --output outputs/results-table.md
+```
+
 ## References
 
 1. Hu et al., [LoRA](https://arxiv.org/abs/2106.09685), 2021.

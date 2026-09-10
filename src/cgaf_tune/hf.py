@@ -64,3 +64,36 @@ def build_model_and_tokenizer(config: dict[str, Any]):
     model = get_peft_model(model, adapter)
     model.config.use_cache = False
     return model, tokenizer
+
+
+def load_evaluation_model(config: dict[str, Any], adapter_path: str | None = None):
+    """Load the frozen base model and optionally attach a trained PEFT adapter."""
+    try:
+        from peft import PeftModel
+        from transformers import AutoModelForCausalLM, AutoTokenizer, BitsAndBytesConfig
+    except ImportError as error:
+        raise RuntimeError("install the project training dependencies before evaluation") from error
+    model_config = config["model"]
+    dtype = resolve_dtype(model_config.get("torch_dtype", "bfloat16"))
+    quantization = None
+    if model_config.get("load_in_4bit", True):
+        if not torch.cuda.is_available():
+            raise RuntimeError("4-bit evaluation requires a CUDA GPU")
+        quantization = BitsAndBytesConfig(
+            load_in_4bit=True,
+            bnb_4bit_quant_type="nf4",
+            bnb_4bit_use_double_quant=True,
+            bnb_4bit_compute_dtype=dtype,
+        )
+    tokenizer = AutoTokenizer.from_pretrained(model_config["name"], use_fast=True)
+    if tokenizer.pad_token_id is None:
+        tokenizer.pad_token = tokenizer.eos_token
+    model = AutoModelForCausalLM.from_pretrained(
+        model_config["name"],
+        torch_dtype=dtype,
+        quantization_config=quantization,
+        device_map="auto" if torch.cuda.is_available() else None,
+    )
+    if adapter_path:
+        model = PeftModel.from_pretrained(model, adapter_path)
+    return model, tokenizer
