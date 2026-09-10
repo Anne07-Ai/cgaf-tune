@@ -1,0 +1,37 @@
+experiment:
+  name: qwen3-0.6b-cgaf-phase6
+  seed: 42
+model:
+  name: Qwen/Qwen3-0.6B
+  load_in_4bit: true
+  torch_dtype: float16
+lora:
+  rank: 8
+  alpha: 16
+  dropout: 0.05
+  targets: [q_proj, k_proj, v_proj, o_proj, gate_proj, up_proj, down_proj]
+training:
+  method: cgaf
+  learning_rate: 0.0002
+  epochs: 5
+  per_device_batch_size: 1
+  evaluation_batch_size: 2
+  gradient_accumulation_steps: 1
+  max_length: 256
+  gradient_checkpointing: true
+  max_gradient_norm: 1.0
+  anchor_ratio: 1.0
+  anchor_weight: 1.0
+  projection_frequency: 1
+cgaf:
+  grouping: layer
+  temperature: 0.1
+  minimum_conflict: 0.0
+  epsilon: 1.0e-12
+evaluation:
+  validation_interval: 50
+  early_stopping_patience: 3
+  early_stopping_min_delta: 0.002
+  seeds: [42, 123, 456]
+  report_memory: true
+  report_wall_time: true
