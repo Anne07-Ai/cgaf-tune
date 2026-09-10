@@ -1,0 +1,27 @@
+{
+  "valid_job_id": "6aa2d4135527934177ec19d0",
+  "excluded_parse_failure_job_id": "6aa2d3cd5527934177ec199c",
+  "grouping": "layer",
+  "temperature": 0.1,
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "summary": {
+    "0.00": {
+      "domain_f1_mean": 0.314787953146102,
+      "anchor_f1_mean": 0.19133217968723804,
+      "harmonic_f1_mean": 0.23788574125655823,
+      "projected_groups_mean": 1126.6666666666667
+    },
+    "0.05": {
+      "domain_f1_mean": 0.3147832338498434,
+      "anchor_f1_mean": 0.19060965570037666,
+      "harmonic_f1_mean": 0.23721986329626454,
+      "projected_groups_mean": 186.33333333333334
+    }
+  },
+  "decision": "Retain minimum_conflict 0.00; 0.05 screening improvement did not replicate across seeds.",
+  "projection_reduction_percent": 83.46153846153845
+}
