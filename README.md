@@ -166,6 +166,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Natural-data 3-seed matched experiment ([results](docs/natural-dolly-3-seed-results.md))
 - [x] Temperature × grouping generation screening ([results](docs/temperature-grouping-ablation.md))
 - [x] Three-seed temperature confirmation ([results](docs/temperature-confirmation-3-seed.md))
+- [x] Minimum-conflict threshold screening ([results](docs/minimum-conflict-threshold-ablation.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
