@@ -1,0 +1,64 @@
+{
+  "job_id": "6aa28fdc5527934177ec092c",
+  "job_url": "https://huggingface.co/jobs/lakshmianne/6aa28fdc5527934177ec092c",
+  "date": "2026-09-10",
+  "hardware": "Tesla T4",
+  "model": "Qwen/Qwen3-0.6B",
+  "seed": 42,
+  "steps_per_method": 1,
+  "config": {
+    "load_in_4bit": true,
+    "torch_dtype": "float16",
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "max_length": 128,
+    "batch_size": 1
+  },
+  "results": [
+    {
+      "method": "lora",
+      "domain_loss": 4.286850452423096,
+      "anchor_loss": null,
+      "domain_gradient_norm": 9.990552428432105,
+      "final_gradient_norm": 9.990552428432105,
+      "projected_groups": 0,
+      "mean_conflict_cosine": null,
+      "mean_gate": 0,
+      "step_seconds": 3.558946665999997
+    },
+    {
+      "method": "rehearsal",
+      "domain_loss": 4.286850452423096,
+      "anchor_loss": 2.689290761947632,
+      "domain_gradient_norm": 23.371688172758766,
+      "final_gradient_norm": 23.371688172758766,
+      "projected_groups": 0,
+      "mean_conflict_cosine": null,
+      "mean_gate": 0,
+      "step_seconds": 2.973170916000015
+    },
+    {
+      "method": "hard_projection",
+      "domain_loss": 4.286850452423096,
+      "anchor_loss": 2.689290761947632,
+      "domain_gradient_norm": 9.990552428432105,
+      "final_gradient_norm": 0.999999904634019,
+      "projected_groups": 0,
+      "mean_conflict_cosine": 0.2748756262340716,
+      "mean_gate": 0,
+      "step_seconds": 2.929969753000023
+    },
+    {
+      "method": "cgaf",
+      "domain_loss": 4.286850452423096,
+      "anchor_loss": 2.689290761947632,
+      "domain_gradient_norm": 9.990552428432105,
+      "final_gradient_norm": 0.999999904634019,
+      "projected_groups": 0,
+      "mean_conflict_cosine": 0.2748756262340716,
+      "mean_gate": 0,
+      "step_seconds": 3.008256492999976
+    }
+  ],
+  "interpretation": "Execution smoke test passed. All 28 layer-local cosines were positive, so no conflict projection was expected or applied."
+}
