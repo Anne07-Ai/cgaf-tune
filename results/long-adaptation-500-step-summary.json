@@ -1,0 +1,60 @@
+{
+  "job_id": "6aa2d9895527934177ec1ac9",
+  "experiment": "dolly-natural-500-step-3-seed",
+  "base": {
+    "domain_loss": 2.5108054677645364,
+    "anchor_loss": 2.9147558410962424,
+    "domain_f1": 0.213569896127037,
+    "anchor_f1": 0.21502449323139816,
+    "harmonic_f1": 0.21429472631610186
+  },
+  "summary": {
+    "lora": {
+      "domain_f1_mean": 0.33861411566651156,
+      "anchor_f1_mean": 0.23794157758349144,
+      "harmonic_f1_mean": 0.27946127200077464,
+      "harmonic_f1_sd": 0.008319149440849041,
+      "domain_loss_gain_mean": -0.9424329532517328,
+      "retention_loss_gain_mean": -1.1652446720335219,
+      "train_seconds_mean": 236.24066666666667
+    },
+    "rehearsal": {
+      "domain_f1_mean": 0.3352474727254059,
+      "anchor_f1_mean": 0.261278088260225,
+      "harmonic_f1_mean": 0.29356010400365223,
+      "harmonic_f1_sd": 0.01914365380608309,
+      "domain_loss_gain_mean": -0.5421836574872335,
+      "retention_loss_gain_mean": -0.8103677299287582,
+      "train_seconds_mean": 447.40633333333335
+    },
+    "hard_projection": {
+      "domain_f1_mean": 0.31443464930232434,
+      "anchor_f1_mean": 0.2406944512704783,
+      "harmonic_f1_mean": 0.2726130735222572,
+      "harmonic_f1_sd": 0.012647014512147033,
+      "domain_loss_gain_mean": -0.8967786762449478,
+      "retention_loss_gain_mean": -0.9327659077114528,
+      "train_seconds_mean": 465.7953333333333
+    },
+    "cgaf": {
+      "domain_f1_mean": 0.3229217077600122,
+      "anchor_f1_mean": 0.2406899262112655,
+      "harmonic_f1_mean": 0.27558348651421305,
+      "harmonic_f1_sd": 0.016620834543218437,
+      "domain_loss_gain_mean": -0.9026476475927566,
+      "retention_loss_gain_mean": -1.0036389562818737,
+      "train_seconds_mean": 468.878,
+      "conflict_steps": [
+        497,
+        496,
+        491
+      ],
+      "projected_groups": [
+        6570,
+        6690,
+        6494
+      ]
+    }
+  },
+  "conclusion": "Rehearsal is best balanced at 500 steps. CGAF slightly beats hard projection but trails LoRA and rehearsal. All methods worsen held-out causal-LM loss despite improving generation F1, indicating overfitting or objective mismatch."
+}
