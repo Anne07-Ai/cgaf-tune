@@ -1,0 +1,47 @@
+{
+  "experiment": "phase6-validation-controlled-gate",
+  "job_id": "6aa2f6b221047bf1b037328e",
+  "hardware": "Tesla T4",
+  "model": "Qwen/Qwen3-0.6B",
+  "seed": 42,
+  "data": {
+    "domain_train": 512,
+    "anchor_train": 512,
+    "validation": 128,
+    "max_steps": 1200
+  },
+  "results": [
+    {
+      "method": "lora",
+      "completed_steps": 800,
+      "best_step": 500,
+      "best_validation_loss": 2.5224153716117144,
+      "stop_reason": "early_stopping",
+      "wall_seconds": 463.843
+    },
+    {
+      "method": "rehearsal",
+      "completed_steps": 700,
+      "best_step": 400,
+      "best_validation_loss": 2.466913180425763,
+      "stop_reason": "early_stopping",
+      "wall_seconds": 687.913
+    },
+    {
+      "method": "hard_projection",
+      "completed_steps": 800,
+      "best_step": 500,
+      "best_validation_loss": 2.5041852463036776,
+      "stop_reason": "early_stopping",
+      "wall_seconds": 817.014
+    },
+    {
+      "method": "cgaf",
+      "completed_steps": 800,
+      "best_step": 500,
+      "best_validation_loss": 2.507368240505457,
+      "stop_reason": "early_stopping",
+      "wall_seconds": 835.283
+    }
+  ]
+}
