@@ -145,8 +145,30 @@ a machine-readable comparison report:
 ```bash
 python scripts/evaluate.py \
   --input examples/evaluation_scores.json \
-  --output outputs/evaluation-report.json
+  --output outputs/evaluation-report.json \
+  --chart outputs/pareto.svg
 ```
+
+## Reproducible experiment matrix
+
+Preview the fixed method-by-seed matrix without loading a model:
+
+```bash
+python scripts/run_experiments.py \
+  --config configs/qwen3_0.6b.yaml \
+  --domain-data data/domain.jsonl \
+  --anchor-data data/anchor.jsonl \
+  --output-root outputs/pilot \
+  --dry-run
+```
+
+Remove `--dry-run` on a CUDA machine to execute all four methods across seeds 42, 123, and 456.
+The runner checkpoints `experiment-manifest.json` after every state transition, allowing failed
+runs to be identified without losing completed-run metadata.
+
+Phase 4 analysis adds deterministic percentile-bootstrap confidence intervals, seed-matched
+differences against LoRA, automatic Pareto-front membership, and a dependency-free SVG scatter
+chart with forgetting on the x-axis and domain gain on the y-axis.
 
 ## References
 
