@@ -1,0 +1,27 @@
+{
+  "job_id": "6aa2c5c921047bf1b0372d49",
+  "grouping": "layer",
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "summary": {
+    "0.03": {
+      "domain_f1_mean": 0.3133947457573983,
+      "anchor_f1_mean": 0.19111391426352847,
+      "harmonic_f1_mean": 0.23719409215833795
+    },
+    "0.10": {
+      "domain_f1_mean": 0.3133947457573983,
+      "anchor_f1_mean": 0.1917905591467484,
+      "harmonic_f1_mean": 0.23785138675251005
+    },
+    "0.30": {
+      "domain_f1_mean": 0.31625528278843107,
+      "anchor_f1_mean": 0.18628430519509212,
+      "harmonic_f1_mean": 0.23428301802535184
+    }
+  },
+  "decision": "Retain temperature 0.10. Its mean harmonic F1 is highest, but advantage over 0.03 is only 0.000657 and is not a robust superiority claim."
+}
