@@ -1,0 +1,45 @@
+{
+  "job_id": "6aa2ce1521047bf1b0372e4b",
+  "seed": 42,
+  "grouping": "layer",
+  "temperature": 0.1,
+  "results": [
+    {
+      "threshold": 0,
+      "projected_groups": 1172,
+      "domain_f1": 0.3272361219823008,
+      "anchor_f1": 0.21045207921512588,
+      "harmonic_f1": 0.2561615527808657
+    },
+    {
+      "threshold": 0.01,
+      "projected_groups": 874,
+      "domain_f1": 0.3272361219823008,
+      "anchor_f1": 0.20668581503712144,
+      "harmonic_f1": 0.2533518849550912
+    },
+    {
+      "threshold": 0.03,
+      "projected_groups": 441,
+      "domain_f1": 0.32442713321825584,
+      "anchor_f1": 0.2018232336123925,
+      "harmonic_f1": 0.24884327774218323
+    },
+    {
+      "threshold": 0.05,
+      "projected_groups": 238,
+      "domain_f1": 0.3272361219823008,
+      "anchor_f1": 0.21541835468099405,
+      "harmonic_f1": 0.25980682007061207
+    },
+    {
+      "threshold": 0.1,
+      "projected_groups": 50,
+      "domain_f1": 0.3272361219823008,
+      "anchor_f1": 0.18243592635676154,
+      "harmonic_f1": 0.23426682018631165
+    }
+  ],
+  "screening_winner": 0.05,
+  "projection_reduction_vs_zero_percent": 79.69283276450511
+}
