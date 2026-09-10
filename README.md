@@ -168,6 +168,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Three-seed temperature confirmation ([results](docs/temperature-confirmation-3-seed.md))
 - [x] Minimum-conflict threshold screening ([results](docs/minimum-conflict-threshold-ablation.md))
 - [x] Three-seed threshold confirmation ([results](docs/minimum-conflict-threshold-confirmation.md))
+- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
