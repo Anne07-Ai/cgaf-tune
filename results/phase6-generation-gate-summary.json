@@ -1,0 +1,47 @@
+{
+  "experiment": "phase6-generation-gate",
+  "job_id": "6aa3107621047bf1b037372c",
+  "base": {
+    "domain_f1": 0.18158746663595068,
+    "anchor_f1": 0.20448719735610502,
+    "harmonic_f1": 0.192358191772194
+  },
+  "results": [
+    {
+      "method": "lora",
+      "best_step": 500,
+      "completed_steps": 800,
+      "best_validation_loss": 2.522901939228177,
+      "domain_f1": 0.24583148382177256,
+      "anchor_f1": 0.21036000969530114,
+      "harmonic_f1": 0.22671669268251948
+    },
+    {
+      "method": "rehearsal",
+      "best_step": 400,
+      "completed_steps": 700,
+      "best_validation_loss": 2.4671174734830856,
+      "domain_f1": 0.29564827330425936,
+      "anchor_f1": 0.20811180943908603,
+      "harmonic_f1": 0.24427460302016749
+    },
+    {
+      "method": "hard_projection",
+      "best_step": 500,
+      "completed_steps": 800,
+      "best_validation_loss": 2.503490464761853,
+      "domain_f1": 0.25158730827849946,
+      "anchor_f1": 0.2183659294838389,
+      "harmonic_f1": 0.2338023956597898
+    },
+    {
+      "method": "cgaf",
+      "best_step": 500,
+      "completed_steps": 800,
+      "best_validation_loss": 2.5073131266981363,
+      "domain_f1": 0.2622201120127478,
+      "anchor_f1": 0.21093001593428537,
+      "harmonic_f1": 0.2337951070414327
+    }
+  ]
+}
