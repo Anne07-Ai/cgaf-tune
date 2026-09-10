@@ -161,7 +161,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Structured per-step diagnostics and offline smoke test
 - [x] Hugging Face tokenizer/model and local JSONL dataset wiring
 - [x] QLoRA configuration, training loop, metrics, and adapter saving
-- [ ] GPU pilot execution and matched baseline runs
+- [x] GPU pilot execution and matched baseline smoke runs ([results](docs/pilot-results-2026-09-10.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
