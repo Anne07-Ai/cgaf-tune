@@ -163,6 +163,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] QLoRA configuration, training loop, metrics, and adapter saving
 - [x] GPU pilot execution and matched baseline smoke runs ([results](docs/pilot-results-2026-09-10.md))
 - [x] 100-step controlled-conflict effectiveness run, seed 42 ([results](docs/effectiveness-results-100-step-seed42.md))
+- [x] Natural-data 3-seed matched experiment ([results](docs/natural-dolly-3-seed-results.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
