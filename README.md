@@ -168,7 +168,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Three-seed temperature confirmation ([results](docs/temperature-confirmation-3-seed.md))
 - [x] Minimum-conflict threshold screening ([results](docs/minimum-conflict-threshold-ablation.md))
 - [x] Three-seed threshold confirmation ([results](docs/minimum-conflict-threshold-confirmation.md))
-- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [ ] Phase 6 validation-controlled scaling — GPU gate run in progress ([protocol](docs/phase6-validation-scaling.md), [job](https://huggingface.co/jobs/lakshmianne/6aa2f6b221047bf1b037328e))
+- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [ ] Phase 6 validation-controlled scaling — early-stopping gate passed; generation evaluation pending ([protocol](docs/phase6-validation-scaling.md), [results](docs/phase6-validation-gate-results.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
