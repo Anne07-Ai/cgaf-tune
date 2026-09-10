@@ -1,16 +1,44 @@
-# CGAF-Tune
+<div align="center">
+  <img src="docs/assets/cgaf-anime-hero.webp" alt="CGAF-Tune anime-inspired AI research banner" width="100%" />
 
-**Conflict-Gated Adaptive Fine-Tuning for capability-preserving LLM adaptation**
+  <h1>🌌 CGAF-Tune</h1>
+
+  <p><strong>Conflict-Gated Adaptive Fine-Tuning for capability-preserving LLM adaptation</strong></p>
+
+  <p>
+    <a href="https://github.com/Anne07-Ai/cgaf-tune/actions/workflows/ci.yml"><img src="https://img.shields.io/github/actions/workflow/status/Anne07-Ai/cgaf-tune/ci.yml?branch=main&style=for-the-badge&logo=githubactions&logoColor=white&label=Research%20CI" alt="Research CI" /></a>
+    <img src="https://img.shields.io/badge/Python-3.10%2B-3776AB?style=for-the-badge&logo=python&logoColor=white" alt="Python 3.10+" />
+    <img src="https://img.shields.io/badge/PyTorch-2.2%2B-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white" alt="PyTorch 2.2+" />
+    <img src="https://img.shields.io/badge/Hugging%20Face-Qwen3-FFD21E?style=for-the-badge&logo=huggingface&logoColor=black" alt="Hugging Face Qwen3" />
+    <img src="https://img.shields.io/badge/License-Apache%202.0-8A2BE2?style=for-the-badge" alt="Apache 2.0" />
+  </p>
+
+  <p>
+    <a href="#-research-question">Research</a> •
+    <a href="#-how-cgaf-works">Method</a> •
+    <a href="#-quick-start">Quick start</a> •
+    <a href="#-evaluation">Evaluation</a> •
+    <a href="docs/architecture.md">Architecture</a> •
+    <a href="docs/research-proposal.md">Proposal</a>
+  </p>
+</div>
+
+---
 
 CGAF-Tune tests whether parameter-efficient fine-tuning can learn a narrow domain while preserving a base model's general capabilities. It targets **Qwen3-0.6B/1.7B on one 16–24 GB GPU** with LoRA or 4-bit QLoRA.
 
+> [!IMPORTANT]
 > **Research status:** early prototype. CGAF is a falsifiable hypothesis, not a claimed state-of-the-art result.
 
-## Research question
+| 🔵 Learn | 🟣 Protect | ✨ Balance |
+|---|---|---|
+| Adapt to specialised domain data | Preserve general reasoning and instruction following | Intervene only when gradients conflict |
+
+## 🎯 Research question
 
 Can layer-local gradient-conflict gates preserve general instruction following and reasoning better than ordinary LoRA, rehearsal, and ungated gradient projection at the same trainable-parameter and data budgets?
 
-## Core idea
+## 🧠 How CGAF works
 
 Each step computes adapter gradients from a domain batch and a small capability-retention anchor batch. For adapter group (l), CGAF measures cosine conflict and smoothly removes only the harmful component:
 
@@ -35,7 +63,7 @@ flowchart TD
     P --> U["Update LoRA adapters"]
 ```
 
-## Comparison
+## ⚔️ Method comparison
 
 | Method | Adaptive signal | Intervention | Retention target |
 |---|---|---|---|
@@ -54,7 +82,7 @@ flowchart LR
     E --> R["Trade-off report"]
 ```
 
-## Quick start
+## 🚀 Quick start
 
 ```bash
 python -m venv .venv
@@ -97,7 +125,7 @@ Each JSONL row may contain `text`, `prompt` plus `response`, or a `messages` lis
 step-level conflict diagnostics to `metrics.jsonl` and saves the final PEFT adapter separately
 from the frozen base model.
 
-## Repository structure
+## 🗂️ Repository structure
 
 - `src/cgaf_tune/` — conflict measurement and gated projection
 - `src/cgaf_tune/training.py` — domain/anchor backward passes and optimizer-step engine
@@ -113,18 +141,18 @@ from the frozen base model.
 - `docs/architecture.md` — system, training sequence, and experiment diagrams
 - `docs/evaluation.md` — metrics, baselines, ablations, and reporting rules
 
-## Planned baselines and ablations
+## 🧪 Planned baselines and ablations
 
 - plain LoRA; rehearsal LoRA; hard PCGrad-style LoRA; AdaLoRA
 - global versus layer-wise versus module-wise gates
 - gate temperature, anchor size, projection frequency, and anchor-domain composition
 - at least three seeds, equal data and update budgets
 
-## Primary metrics
+## 📊 Primary metrics
 
 Domain score, retained capability score, forgetting, harmonic adaptation–retention score, peak GPU memory, wall-clock overhead, gate activity, and conflict by layer.
 
-## Implementation status
+## ✅ Implementation status
 
 - [x] Numerically stable per-group smooth projection
 - [x] PEFT-compatible parameter grouping
@@ -137,7 +165,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
-## Evaluation
+## 📈 Evaluation
 
 After recording before/after scores using the schema in `examples/evaluation_scores.json`, build
 a machine-readable comparison report:
@@ -149,7 +177,7 @@ python scripts/evaluate.py \
   --chart outputs/pareto.svg
 ```
 
-## Reproducible experiment matrix
+## 🔁 Reproducible experiment matrix
 
 Preview the fixed method-by-seed matrix without loading a model:
 
@@ -170,7 +198,7 @@ Phase 4 analysis adds deterministic percentile-bootstrap confidence intervals, s
 differences against LoRA, automatic Pareto-front membership, and a dependency-free SVG scatter
 chart with forgetting on the x-axis and domain gain on the y-axis.
 
-## Per-example evaluation and leakage audit
+## 🔍 Per-example evaluation and leakage audit
 
 Evaluation JSONL rows require `id`, `prompt`, `reference`, and `category`. Run the frozen base model
 and each trained adapter separately so every prediction remains auditable:
@@ -205,7 +233,7 @@ python scripts/build_results_table.py \
   --output outputs/results-table.md
 ```
 
-## References
+## 📚 References
 
 1. Hu et al., [LoRA](https://arxiv.org/abs/2106.09685), 2021.
 2. Zhang et al., [AdaLoRA](https://arxiv.org/abs/2303.10512), 2023.
@@ -215,6 +243,13 @@ python scripts/build_results_table.py \
 6. Yang et al., [Qwen3 Technical Report](https://arxiv.org/abs/2505.09388), 2025.
 7. Meng et al., [PiSSA](https://arxiv.org/abs/2404.02948), 2024.
 
-## License
+## 📜 License
 
 Apache-2.0. Model and dataset licenses remain governed by their providers.
+
+---
+
+<div align="center">
+  <strong>Built for reproducible, honest, capability-preserving AI research.</strong><br />
+  <sub>Learn what matters. Protect what the model already knows. Measure everything.</sub>
+</div>
