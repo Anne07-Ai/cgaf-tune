@@ -1,0 +1,74 @@
+{
+  "experiment": "dolly-natural-100-step-3-seed",
+  "job_id": "6aa29df75527934177ec0c53",
+  "job_url": "https://huggingface.co/jobs/lakshmianne/6aa29df75527934177ec0c53",
+  "dataset": "databricks/databricks-dolly-15k",
+  "domain_category": "summarization",
+  "anchor_categories": [
+    "closed_qa",
+    "general_qa"
+  ],
+  "model": "Qwen/Qwen3-0.6B",
+  "hardware": "Tesla T4",
+  "steps": 100,
+  "seeds": [
+    42,
+    123,
+    456
+  ],
+  "train_each": 96,
+  "eval_each": 24,
+  "base": {
+    "domain_loss": 2.5108054677645364,
+    "anchor_loss": 2.9147558410962424
+  },
+  "summary": {
+    "lora": {
+      "domain_gain_mean": 0.36007053653399135,
+      "domain_gain_sd": 0.006077347625326601,
+      "retention_gain_mean": 0.268540402253469,
+      "retention_gain_sd": 0.02208894813446334,
+      "train_seconds_mean": 59.965666666666664
+    },
+    "rehearsal": {
+      "domain_gain_mean": 0.3561323251989152,
+      "domain_gain_sd": 0.0041151364643779755,
+      "retention_gain_mean": 0.3734835816754236,
+      "retention_gain_sd": 0.004435751447306542,
+      "train_seconds_mean": 103.032
+    },
+    "hard_projection": {
+      "domain_gain_mean": 0.3608909514215255,
+      "domain_gain_sd": 0.0048309951715261625,
+      "retention_gain_mean": 0.2984223266442618,
+      "retention_gain_sd": 0.013750135614795662,
+      "train_seconds_mean": 107.11866666666667,
+      "conflict_steps_mean": 98.33333333333333,
+      "projected_groups_mean": 1139.6666666666667
+    },
+    "cgaf": {
+      "domain_gain_mean": 0.360851208368937,
+      "domain_gain_sd": 0.005096840990510013,
+      "retention_gain_mean": 0.290755285157098,
+      "retention_gain_sd": 0.014304177083255086,
+      "train_seconds_mean": 107.12466666666667,
+      "conflict_steps_mean": 98.33333333333333,
+      "projected_groups_mean": 1132
+    }
+  },
+  "paired_vs_lora": {
+    "rehearsal": {
+      "domain_gain_mean": -0.0039382113350761765,
+      "retention_gain_mean": 0.10494317942195464
+    },
+    "hard_projection": {
+      "domain_gain_mean": 0.0008204148875341488,
+      "retention_gain_mean": 0.029881924390792847
+    },
+    "cgaf": {
+      "domain_gain_mean": 0.0007806718349456787,
+      "retention_gain_mean": 0.02221488290362898
+    }
+  },
+  "conclusion": "Rehearsal is the strongest balanced method in this configuration. CGAF activates consistently but does not outperform hard projection; current superiority hypothesis is unsupported on this benchmark."
+}
