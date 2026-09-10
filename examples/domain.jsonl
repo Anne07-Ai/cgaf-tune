@@ -1,0 +1,2 @@
+{"prompt":"Classify this security finding: public storage bucket", "response":"High severity: restrict public access and review exposed data."}
+{"messages":[{"role":"user","content":"What should a vulnerability report include?"},{"role":"assistant","content":"Include severity, affected asset, evidence, impact, and remediation."}]}

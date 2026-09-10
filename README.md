@@ -66,14 +66,29 @@ pytest
 ```
 
 The smoke test executes the complete Phase 1 two-pass gradient engine without downloading a
-model. A real Qwen3 run requires CUDA plus access to the configured model and datasets; that
-dataset/model wiring is the Phase 2 milestone.
+model. For a real Qwen3 QLoRA run, provide domain and capability-retention JSONL files:
+
+```bash
+python scripts/train.py \
+  --config configs/qwen3_0.6b.yaml \
+  --domain-data data/domain.jsonl \
+  --anchor-data data/anchor.jsonl \
+  --output-dir outputs/qwen3-pilot \
+  --max-steps 100
+```
+
+Each JSONL row may contain `text`, `prompt` plus `response`, or a `messages` list. Training writes
+step-level conflict diagnostics to `metrics.jsonl` and saves the final PEFT adapter separately
+from the frozen base model.
 
 ## Repository structure
 
 - `src/cgaf_tune/` — conflict measurement and gated projection
 - `src/cgaf_tune/training.py` — domain/anchor backward passes and optimizer-step engine
 - `src/cgaf_tune/gradients.py` — deterministic LoRA parameter grouping and gradient transfer
+- `src/cgaf_tune/data.py` — validated JSONL ingestion and causal-LM collation
+- `src/cgaf_tune/hf.py` — Qwen3, 4-bit NF4, and PEFT LoRA construction
+- `src/cgaf_tune/runner.py` — real training loop, metrics, and adapter checkpoints
 - `scripts/train.py` — validated experiment entry point
 - `configs/` — reproducible single-GPU configurations
 - `tests/` — numerical unit tests
@@ -99,8 +114,9 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Domain and anchor gradient capture
 - [x] Projected-gradient restoration and optimizer step
 - [x] Structured per-step diagnostics and offline smoke test
-- [ ] Hugging Face dataset/tokenizer/model wiring
-- [ ] QLoRA GPU pilot and matched baseline runs
+- [x] Hugging Face tokenizer/model and local JSONL dataset wiring
+- [x] QLoRA configuration, training loop, metrics, and adapter saving
+- [ ] GPU pilot execution and matched baseline runs
 
 ## References
 

@@ -17,6 +17,8 @@ training:
   per_device_batch_size: 2
   gradient_accumulation_steps: 8
   max_length: 1024
+  gradient_checkpointing: true
+  max_gradient_norm: 1.0
   anchor_ratio: 0.125
   projection_frequency: 1
 cgaf:

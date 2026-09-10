@@ -11,6 +11,7 @@ import yaml
 from torch import nn
 
 from cgaf_tune import CGAFConfig, CGAFStepEngine
+from cgaf_tune.runner import run_training
 
 REQUIRED = {"experiment", "model", "lora", "training", "cgaf", "evaluation"}
 
@@ -31,6 +32,10 @@ def main() -> None:
     parser.add_argument(
         "--smoke-test", action="store_true", help="exercise a real CGAF optimizer step"
     )
+    parser.add_argument("--domain-data", type=Path, help="domain JSONL training data")
+    parser.add_argument("--anchor-data", type=Path, help="capability-retention JSONL data")
+    parser.add_argument("--output-dir", type=Path, default=Path("outputs/cgaf-pilot"))
+    parser.add_argument("--max-steps", type=int)
     args = parser.parse_args()
     config = load_config(args.config)
 
@@ -44,10 +49,12 @@ def main() -> None:
         run_smoke_test(config)
         return
 
-    raise NotImplementedError(
-        "Dataset and Hugging Face model wiring is Phase 2. "
-        "Use --smoke-test to validate the Phase 1 gradient engine."
+    if args.domain_data is None or args.anchor_data is None:
+        parser.error("real training requires --domain-data and --anchor-data")
+    destination = run_training(
+        config, args.domain_data, args.anchor_data, args.output_dir, args.max_steps
     )
+    print(f"training complete: {destination}")
 
 
 def run_smoke_test(config: dict) -> None:
