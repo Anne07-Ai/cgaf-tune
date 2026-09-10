@@ -61,14 +61,19 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -e ".[dev]"
 python scripts/train.py --config configs/qwen3_0.6b.yaml --dry-run
+python scripts/train.py --config configs/qwen3_0.6b.yaml --smoke-test
 pytest
 ```
 
-A real run requires CUDA plus access to the configured Hugging Face model and datasets.
+The smoke test executes the complete Phase 1 two-pass gradient engine without downloading a
+model. A real Qwen3 run requires CUDA plus access to the configured model and datasets; that
+dataset/model wiring is the Phase 2 milestone.
 
 ## Repository structure
 
 - `src/cgaf_tune/` — conflict measurement and gated projection
+- `src/cgaf_tune/training.py` — domain/anchor backward passes and optimizer-step engine
+- `src/cgaf_tune/gradients.py` — deterministic LoRA parameter grouping and gradient transfer
 - `scripts/train.py` — validated experiment entry point
 - `configs/` — reproducible single-GPU configurations
 - `tests/` — numerical unit tests
@@ -86,6 +91,16 @@ A real run requires CUDA plus access to the configured Hugging Face model and da
 ## Primary metrics
 
 Domain score, retained capability score, forgetting, harmonic adaptation–retention score, peak GPU memory, wall-clock overhead, gate activity, and conflict by layer.
+
+## Implementation status
+
+- [x] Numerically stable per-group smooth projection
+- [x] PEFT-compatible parameter grouping
+- [x] Domain and anchor gradient capture
+- [x] Projected-gradient restoration and optimizer step
+- [x] Structured per-step diagnostics and offline smoke test
+- [ ] Hugging Face dataset/tokenizer/model wiring
+- [ ] QLoRA GPU pilot and matched baseline runs
 
 ## References
 
