@@ -49,17 +49,19 @@ flowchart LR
 
 ## Current implementation boundary
 
-Implemented and tested:
+Implemented and tested (Phase 1):
 
 - stable per-group cosine measurement;
 - smooth gated projection without input mutation;
 - numerical tests for aligned, conflicting, and grouped gradients;
-- configuration validation and dry-run entry point.
+- deterministic PEFT parameter grouping and gradient capture;
+- two-pass CGAF optimizer-step engine with structured diagnostics;
+- configuration validation, dry-run, and offline smoke-test entry points.
 
-Next milestone:
+Next milestone (Phase 2):
 
-- capture adapter gradients across two backward passes;
-- restore projected gradients into PEFT parameters;
+- load JSONL/Hugging Face domain and anchor datasets;
+- build the Qwen3 QLoRA model and tokenizer path;
 - log conflict, gate activity, removed norm, memory, and time;
 - run matched LoRA, rehearsal, hard-projection, and AdaLoRA controls.
 
