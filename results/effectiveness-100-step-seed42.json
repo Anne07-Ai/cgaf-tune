@@ -1,0 +1,63 @@
+{
+  "experiment": "controlled-conflict-100-step-effectiveness",
+  "job_id": "6aa294ce5527934177ec0a18",
+  "job_url": "https://huggingface.co/jobs/lakshmianne/6aa294ce5527934177ec0a18",
+  "hardware": "Tesla T4",
+  "model": "Qwen/Qwen3-0.6B",
+  "seed": 42,
+  "steps": 100,
+  "base": {
+    "domain_loss": 6.229877829551697,
+    "anchor_loss": 5.19280070066452
+  },
+  "results": [
+    {
+      "method": "lora",
+      "train_wall_seconds": 50.392,
+      "domain_loss": 4.0055913627147675,
+      "anchor_loss": 4.690702438354492,
+      "domain_gain": 2.2242864668369293,
+      "anchor_gain": 0.5020982623100281,
+      "conflict_steps": 0,
+      "projected_groups": 0
+    },
+    {
+      "method": "rehearsal",
+      "train_wall_seconds": 87.396,
+      "domain_loss": 3.824283093214035,
+      "anchor_loss": 3.3928626775741577,
+      "domain_gain": 2.4055947363376617,
+      "anchor_gain": 1.7999380230903625,
+      "conflict_steps": 0,
+      "projected_groups": 0
+    },
+    {
+      "method": "hard_projection",
+      "train_wall_seconds": 91.123,
+      "domain_loss": 3.3741681277751923,
+      "anchor_loss": 4.138328164815903,
+      "domain_gain": 2.8557097017765045,
+      "anchor_gain": 1.0544725358486176,
+      "conflict_steps": 90,
+      "projected_groups": 1250,
+      "mean_conflict_cosine": 0.03552520885570305
+    },
+    {
+      "method": "cgaf",
+      "train_wall_seconds": 90.635,
+      "domain_loss": 3.088642865419388,
+      "anchor_loss": 4.2594917714595795,
+      "domain_gain": 3.141234964132309,
+      "anchor_gain": 0.9333089292049408,
+      "conflict_steps": 90,
+      "projected_groups": 1203,
+      "mean_conflict_cosine": 0.03575542989790328
+    }
+  ],
+  "limitations": [
+    "single seed",
+    "synthetic controlled-conflict stress test",
+    "loss-based held-out evaluation",
+    "no confidence intervals"
+  ]
+}
