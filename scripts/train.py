@@ -36,8 +36,14 @@ def main() -> None:
     parser.add_argument("--anchor-data", type=Path, help="capability-retention JSONL data")
     parser.add_argument("--output-dir", type=Path, default=Path("outputs/cgaf-pilot"))
     parser.add_argument("--max-steps", type=int)
+    parser.add_argument(
+        "--method", choices=["cgaf", "lora", "rehearsal", "hard_projection"],
+        help="override training.method for a matched baseline run",
+    )
     args = parser.parse_args()
     config = load_config(args.config)
+    if args.method:
+        config["training"]["method"] = args.method
 
     if args.dry_run:
         print(f"configuration valid: {config['experiment']['name']}")

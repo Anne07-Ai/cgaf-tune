@@ -15,7 +15,7 @@ from torch.utils.data import DataLoader
 from .data import CausalLMCollator, JsonlTextDataset
 from .hf import build_model_and_tokenizer
 from .projection import CGAFConfig
-from .training import CGAFStepEngine
+from .training import build_step_engine
 
 
 def _cycle(loader: DataLoader) -> Iterator[dict[str, torch.Tensor]]:
@@ -73,16 +73,19 @@ def run_training(
         lr=float(training["learning_rate"]),
     )
     cgaf = config["cgaf"]
-    engine = CGAFStepEngine(
+    method = str(training.get("method", "cgaf"))
+    engine = build_step_engine(
+        method,
         model,
         optimizer,
-        CGAFConfig(
+        config=CGAFConfig(
             temperature=float(cgaf["temperature"]),
             epsilon=float(cgaf["epsilon"]),
             minimum_conflict=float(cgaf["minimum_conflict"]),
         ),
         grouping=str(cgaf.get("grouping", "layer")),
         max_gradient_norm=training.get("max_gradient_norm", 1.0),
+        anchor_weight=float(training.get("anchor_weight", 1.0)),
     )
     device = _model_device(model)
     anchor_batches = _cycle(anchor_loader)

@@ -77,6 +77,22 @@ python scripts/train.py \
   --max-steps 100
 ```
 
+Run matched baselines by changing only the method:
+
+```bash
+python scripts/train.py --config configs/qwen3_0.6b.yaml \
+  --domain-data data/domain.jsonl --anchor-data data/anchor.jsonl \
+  --method lora --output-dir outputs/lora-seed42
+
+python scripts/train.py --config configs/qwen3_0.6b.yaml \
+  --domain-data data/domain.jsonl --anchor-data data/anchor.jsonl \
+  --method rehearsal --output-dir outputs/rehearsal-seed42
+
+python scripts/train.py --config configs/qwen3_0.6b.yaml \
+  --domain-data data/domain.jsonl --anchor-data data/anchor.jsonl \
+  --method hard_projection --output-dir outputs/hard-projection-seed42
+```
+
 Each JSONL row may contain `text`, `prompt` plus `response`, or a `messages` list. Training writes
 step-level conflict diagnostics to `metrics.jsonl` and saves the final PEFT adapter separately
 from the frozen base model.
@@ -89,6 +105,7 @@ from the frozen base model.
 - `src/cgaf_tune/data.py` — validated JSONL ingestion and causal-LM collation
 - `src/cgaf_tune/hf.py` — Qwen3, 4-bit NF4, and PEFT LoRA construction
 - `src/cgaf_tune/runner.py` — real training loop, metrics, and adapter checkpoints
+- `src/cgaf_tune/evaluation.py` — adaptation, retention, forgetting, and seed summaries
 - `scripts/train.py` — validated experiment entry point
 - `configs/` — reproducible single-GPU configurations
 - `tests/` — numerical unit tests
@@ -117,6 +134,19 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Hugging Face tokenizer/model and local JSONL dataset wiring
 - [x] QLoRA configuration, training loop, metrics, and adapter saving
 - [ ] GPU pilot execution and matched baseline runs
+- [x] Plain LoRA, rehearsal, and hard-projection baseline engines
+- [x] Offline multi-seed adaptation–retention evaluation CLI
+
+## Evaluation
+
+After recording before/after scores using the schema in `examples/evaluation_scores.json`, build
+a machine-readable comparison report:
+
+```bash
+python scripts/evaluate.py \
+  --input examples/evaluation_scores.json \
+  --output outputs/evaluation-report.json
+```
 
 ## References
 

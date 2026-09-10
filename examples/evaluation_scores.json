@@ -1,0 +1,23 @@
+{
+  "score_ceiling": 1.0,
+  "runs": [
+    {
+      "method": "lora",
+      "seed": 42,
+      "domain": {"before": 0.42, "after": 0.71},
+      "retention": {
+        "before": {"reasoning": 0.68, "factual_qa": 0.73},
+        "after": {"reasoning": 0.59, "factual_qa": 0.65}
+      }
+    },
+    {
+      "method": "cgaf",
+      "seed": 42,
+      "domain": {"before": 0.42, "after": 0.70},
+      "retention": {
+        "before": {"reasoning": 0.68, "factual_qa": 0.73},
+        "after": {"reasoning": 0.65, "factual_qa": 0.70}
+      }
+    }
+  ]
+}

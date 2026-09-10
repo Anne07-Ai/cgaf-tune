@@ -92,3 +92,16 @@ def apply_cgaf_projection(
         )
 
     return projected, statistics
+
+
+def apply_hard_projection(
+    domain_gradients: Mapping[str, list[Tensor]],
+    anchor_gradients: Mapping[str, list[Tensor]],
+    epsilon: float = 1e-12,
+) -> tuple[dict[str, list[Tensor]], dict[str, ProjectionStats]]:
+    """Apply full PCGrad-style removal for every negatively aligned group."""
+    return apply_cgaf_projection(
+        domain_gradients,
+        anchor_gradients,
+        CGAFConfig(temperature=1e-6, epsilon=epsilon, minimum_conflict=0.0),
+    )

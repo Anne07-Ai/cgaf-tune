@@ -20,6 +20,7 @@ training:
   gradient_checkpointing: true
   max_gradient_norm: 1.0
   anchor_ratio: 0.125
+  anchor_weight: 1.0
   projection_frequency: 1
 cgaf:
   grouping: layer
