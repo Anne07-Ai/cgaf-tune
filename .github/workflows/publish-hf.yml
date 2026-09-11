@@ -25,7 +25,7 @@ permissions:
 
 jobs:
   submit:
-    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message == 'chore: launch HF publication'
+    if: >-\n      github.event_name == 'workflow_dispatch' ||\n      github.event.head_commit.message == 'chore: launch HF publication'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
