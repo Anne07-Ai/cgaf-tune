@@ -15,12 +15,17 @@ on:
         options:
           - private
           - public
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/publish-hf.yml"
 
 permissions:
   contents: read
 
 jobs:
   submit:
+    if: github.event_name == 'workflow_dispatch' || github.event.head_commit.message == 'chore: launch HF publication'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -32,7 +37,9 @@ jobs:
       - name: Submit secure GPU publication job
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
+          HF_REPO_ID: ${{ inputs.repo_id || 'lakshmianne/cgaf-qwen3-0.6b-seed42' }}
+          HF_VISIBILITY: ${{ inputs.visibility || 'private' }}
         run: |
           python scripts/submit_hf_publication.py \
-            --repo-id "${{ inputs.repo_id }}" \
-            --visibility "${{ inputs.visibility }}"
+            --repo-id "$HF_REPO_ID" \
+            --visibility "$HF_VISIBILITY"
