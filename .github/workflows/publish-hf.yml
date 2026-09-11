@@ -1,4 +1,4 @@
-name: publish-cgaf-to-hugging-face
+name: publish-cgaf-to-hugging-face\n# publication launcher v2
 
 on:
   push:
