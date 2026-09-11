@@ -2,7 +2,7 @@
 
 **Status:** Completed  
 **Published model:** [lakshmianne/cgaf-qwen3-0.6b-seed42](https://huggingface.co/lakshmianne/cgaf-qwen3-0.6b-seed42)  
-**Visibility:** Private  
+**Visibility:** Public  
 **GPU job:** [6aa38b1321047bf1b0374c80](https://huggingface.co/jobs/lakshmianne/6aa38b1321047bf1b0374c80)
 
 ## Published artifact
