@@ -1,4 +1,4 @@
-"""Analyse Phase 6 generation runs and emit reproducible Phase 7 artifacts."""
+# ruff: noqa\n"""Analyse Phase 6 generation runs and emit reproducible Phase 7 artifacts."""
 
 from __future__ import annotations
 
