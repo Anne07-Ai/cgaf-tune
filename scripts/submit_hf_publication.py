@@ -2,7 +2,6 @@
 
 import argparse
 import os
-from pathlib import Path
 
 from huggingface_hub import run_uv_job
 
