@@ -168,7 +168,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Three-seed temperature confirmation ([results](docs/temperature-confirmation-3-seed.md))
 - [x] Minimum-conflict threshold screening ([results](docs/minimum-conflict-threshold-ablation.md))
 - [x] Three-seed threshold confirmation ([results](docs/minimum-conflict-threshold-confirmation.md))
-- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [x] Phase 6 validation-controlled scaling and three-seed generation confirmation ([results](docs/phase6-three-seed-results.md))\n- [x] Phase 7 statistical analysis, Pareto frontier, and seed-sensitivity visuals ([results](docs/phase7-statistical-analysis.md))
+- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [x] Phase 6 validation-controlled scaling and three-seed generation confirmation ([results](docs/phase6-three-seed-results.md))\n- [x] Phase 7 statistical analysis, Pareto frontier, and seed-sensitivity visuals ([results](docs/phase7-statistical-analysis.md))\n- [x] Phase 8 research manuscript, research card, citation, and reproducibility release ([paper](docs/paper.md), [release](docs/release-v0.1.md))\n- [ ] Persistent Hugging Face adapter publication (requires write-scoped Hub access and checkpoint rerun)
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
@@ -239,6 +239,19 @@ python scripts/build_results_table.py \
   --result CGAF=outputs/cgaf-evaluation.json \
   --output outputs/results-table.md
 ```
+
+## 📝 Research release
+
+- [Research manuscript](docs/paper.md)
+- [Phase 7 statistical analysis](docs/phase7-statistical-analysis.md)
+- [Hugging Face-ready research card](MODEL_CARD.md)
+- [Reproducibility checklist](docs/reproducibility-checklist.md)
+- [v0.1 release notes](docs/release-v0.1.md)
+- [Citation metadata](CITATION.cff)
+
+The repository research package is complete. Persistent adapter publication remains pending because
+the completed cloud jobs used ephemeral filesystems and the connected Hugging Face credential has
+read/jobs scopes but no repository-write scope.
 
 ## 📚 References
 
