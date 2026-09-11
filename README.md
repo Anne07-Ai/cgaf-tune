@@ -28,7 +28,7 @@
 CGAF-Tune tests whether parameter-efficient fine-tuning can learn a narrow domain while preserving a base model's general capabilities. It targets **Qwen3-0.6B/1.7B on one 16–24 GB GPU** with LoRA or 4-bit QLoRA.
 
 > [!IMPORTANT]
-> **Research status:** early prototype. CGAF is a falsifiable hypothesis, not a claimed state-of-the-art result.
+> **Research status:** early prototype. CGAF is a falsifiable hypothesis, not a claimed state-of-the-art result.\n>\n> **Phase 6 finding:** CGAF achieved the highest mean domain F1 but did not improve balanced harmonic F1 over LoRA or rehearsal across three seeds.
 
 | 🔵 Learn | 🟣 Protect | ✨ Balance |
 |---|---|---|
@@ -168,7 +168,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Three-seed temperature confirmation ([results](docs/temperature-confirmation-3-seed.md))
 - [x] Minimum-conflict threshold screening ([results](docs/minimum-conflict-threshold-ablation.md))
 - [x] Three-seed threshold confirmation ([results](docs/minimum-conflict-threshold-confirmation.md))
-- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [ ] Phase 6 validation-controlled scaling — three-seed confirmation running ([protocol](docs/phase6-validation-scaling.md), [one-seed results](docs/phase6-generation-gate-results.md), [GPU job](https://huggingface.co/jobs/lakshmianne/6aa31f875527934177ec2c84))
+- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [x] Phase 6 validation-controlled scaling and three-seed generation confirmation ([results](docs/phase6-three-seed-results.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
