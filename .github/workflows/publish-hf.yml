@@ -1,0 +1,38 @@
+name: publish-cgaf-to-hugging-face
+
+on:
+  workflow_dispatch:
+    inputs:
+      repo_id:
+        description: Hugging Face model repository
+        required: true
+        default: lakshmianne/cgaf-qwen3-0.6b-seed42
+      visibility:
+        description: Initial repository visibility
+        required: true
+        default: private
+        type: choice
+        options:
+          - private
+          - public
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install Hugging Face Hub client
+        run: python -m pip install --upgrade "huggingface_hub>=0.26"
+      - name: Submit secure GPU publication job
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          python scripts/submit_hf_publication.py \
+            --repo-id "${{ inputs.repo_id }}" \
+            --visibility "${{ inputs.visibility }}"
