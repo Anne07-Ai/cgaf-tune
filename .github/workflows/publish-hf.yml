@@ -1,31 +1,18 @@
 name: publish-cgaf-to-hugging-face
 
 on:
-  workflow_dispatch:
-    inputs:
-      repo_id:
-        description: Hugging Face model repository
-        required: true
-        default: lakshmianne/cgaf-qwen3-0.6b-seed42
-      visibility:
-        description: Initial repository visibility
-        required: true
-        default: private
-        type: choice
-        options:
-          - private
-          - public
   push:
-    branches: [main]
+    branches:
+      - main
     paths:
       - ".github/workflows/publish-hf.yml"
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 jobs:
   submit:
-    if: >-\n      github.event_name == 'workflow_dispatch' ||\n      github.event.head_commit.message == 'chore: launch HF publication'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,9 +24,7 @@ jobs:
       - name: Submit secure GPU publication job
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
-          HF_REPO_ID: ${{ inputs.repo_id || 'lakshmianne/cgaf-qwen3-0.6b-seed42' }}
-          HF_VISIBILITY: ${{ inputs.visibility || 'private' }}
         run: |
           python scripts/submit_hf_publication.py \
-            --repo-id "$HF_REPO_ID" \
-            --visibility "$HF_VISIBILITY"
+            --repo-id "lakshmianne/cgaf-qwen3-0.6b-seed42" \
+            --visibility "private"
