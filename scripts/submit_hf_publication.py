@@ -15,7 +15,7 @@ if not token:
     raise SystemExit("GitHub Actions secret HF_TOKEN is missing")
 
 job = run_uv_job(
-    Path("jobs/publish_cgaf.py"),
+    "jobs/publish_cgaf.py",
     script_args=[
         "--repo-id", args.repo_id,
         "--visibility", args.visibility,
