@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: "If you use CGAF-Tune, please cite this software."
+title: "CGAF-Tune: Conflict-Gated Adaptive Fine-Tuning"
+type: software
+authors:
+  - family-names: "Anne"
+    given-names: "Lakshmi"
+repository-code: "https://github.com/Anne07-Ai/cgaf-tune"
+url: "https://github.com/Anne07-Ai/cgaf-tune"
+license: Apache-2.0
+version: 0.1.0
+date-released: 2026-09-11
+keywords:
+  - parameter-efficient fine-tuning
+  - LoRA
+  - catastrophic forgetting
+  - gradient conflict
+  - language models
