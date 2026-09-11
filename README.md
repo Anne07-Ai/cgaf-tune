@@ -168,7 +168,7 @@ Domain score, retained capability score, forgetting, harmonic adaptation–reten
 - [x] Three-seed temperature confirmation ([results](docs/temperature-confirmation-3-seed.md))
 - [x] Minimum-conflict threshold screening ([results](docs/minimum-conflict-threshold-ablation.md))
 - [x] Three-seed threshold confirmation ([results](docs/minimum-conflict-threshold-confirmation.md))
-- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [x] Phase 6 validation-controlled scaling and three-seed generation confirmation ([results](docs/phase6-three-seed-results.md))\n- [x] Phase 7 statistical analysis, Pareto frontier, and seed-sensitivity visuals ([results](docs/phase7-statistical-analysis.md))\n- [x] Phase 8 research manuscript, research card, citation, and reproducibility release ([paper](docs/paper.md), [release](docs/release-v0.1.md))\n- [x] Persistent Hugging Face adapter publication ([private model](https://huggingface.co/lakshmianne/cgaf-qwen3-0.6b-seed42), [results](docs/hugging-face-publication-results.md))
+- [x] 500-step, three-seed long-adaptation experiment ([results](docs/long-adaptation-500-step-results.md))\n- [x] Phase 6 validation-controlled scaling and three-seed generation confirmation ([results](docs/phase6-three-seed-results.md))\n- [x] Phase 7 statistical analysis, Pareto frontier, and seed-sensitivity visuals ([results](docs/phase7-statistical-analysis.md))\n- [x] Phase 8 research manuscript, research card, citation, and reproducibility release ([paper](docs/paper.md), [release](docs/release-v0.1.md))\n- [x] Persistent Hugging Face adapter publication ([public model](https://huggingface.co/lakshmianne/cgaf-qwen3-0.6b-seed42), [results](docs/hugging-face-publication-results.md))
 - [x] Plain LoRA, rehearsal, and hard-projection baseline engines
 - [x] Offline multi-seed adaptation–retention evaluation CLI
 
@@ -249,9 +249,8 @@ python scripts/build_results_table.py \
 - [v0.1 release notes](docs/release-v0.1.md)
 - [Citation metadata](CITATION.cff)
 
-The repository research package is complete. Persistent adapter publication remains pending because
-the completed cloud jobs used ephemeral filesystems and the connected Hugging Face credential has
-read/jobs scopes but no repository-write scope.
+The repository research package and public Hugging Face adapter publication are complete. The model
+card, PEFT adapter, tokenizer files, and evaluation results are openly available for reproducibility.
 
 ## 📚 References
 
